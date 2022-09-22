@@ -1,0 +1,57 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(199, 170, 170);
+    font-family: "roboto slab",sans-serif;
+}
+.main{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 90px;
+    margin-bottom: 90px;
+    padding: 50px;
+}
+           .logo{
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+.section{
+    
+    display: flex;
+    flex-flow: column;
+}
+.datos1{
+    display: flex;
+    flex-direction: row;
+    width: 1000px;
+    flex-wrap: nowrap;
+    height: 250px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.datos1 .input-persona{
+    border: none;
+    padding: 5px;
+    border-radius: 8px;
+
+}
+.datos1 .input-persona:focus{
+    outline: none;
+}
+.btn{
+    background-color: rgb(192, 147, 137);
+    border: none;
+    padding: 4px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 16px;
+}
