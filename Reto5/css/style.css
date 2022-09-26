@@ -5,7 +5,7 @@
 }
 
 body{
-    background-color: red;
+    background-color: hsl(205, 33%, 90%);
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
@@ -15,7 +15,6 @@ h1{
 
 .grid-container{
     background-color: white;
-    height: 100vh;
     max-width: 600px;
     padding: 20px;
     margin: 40px;
@@ -31,7 +30,7 @@ h1{
     display: grid;
     grid-template-columns: 3fr auto;
     align-items: center;
-    background-color: blue;
+    background-color: white;
     grid-area: header;
 }
 
@@ -55,42 +54,50 @@ h1{
 }
 
 .main{
-    background-color: aqua;
     grid-area: main;
     display: grid;
     align-content: flex-start;
-    gap: 10px;
+    row-gap: 10px;
     
 }
 .main .card{
-  
     border-radius: 10px;
-    background-color: blueviolet;
+    background-color:hsl(205, 33%, 90%);
     padding: 10px;
     display: grid;
     grid-template-areas: 
     "avatar content"
     ". time";
     grid-template-columns: 20% 80%;
-    gap: 10px;
+    column-gap: 10px;
 }
 
 .main .card .avatar{
     grid-area: avatar;
+  
 }
 .main .card .avatar img{
     width: 60px;
-    margin: 0 auto;
+   
+    
 }
 .main .card .content{
     grid-area: 'content';
+  
 }
 .main .card .time{
+    
     grid-area: time;
+  
 }
-
-
-
+.main .card .cont{
+    display: flex;
+    width: 250%;
+    border-radius: 8px;
+    margin-top: 30px;
+    border: 1px solid black;
+   justify-content: center;
+}
 
 @media (min-width: 600px){
     .grid-container{
