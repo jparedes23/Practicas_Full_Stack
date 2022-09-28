@@ -5,20 +5,18 @@
 }
 
 body{
-    background-color: hsl(205, 33%, 90%);
-    font-family: 'Plus Jakarta Sans', sans-serif;
+ font-family:'Plus Jakarta Sans', sans-serif;
+ background-color: hsl(209, 58%, 86%);
 }
-
 h1{
     font-size: 1.5em;
 }
 
 .grid-container{
     background-color: white;
+    height: 100vh;
     max-width: 600px;
     padding: 20px;
-    margin: 40px;
-    border-radius: 20px;
     display: grid;
     grid-template-areas: 
     "header"
@@ -28,24 +26,22 @@ h1{
 
 .header{
     display: grid;
-    grid-template-columns: 3fr auto;
+    grid-template-columns: 1fr auto;
     align-items: center;
-    background-color: white;
     grid-area: header;
 }
 
 .header .badge{
-    background-color: hsl(219, 85%, 26%);
+    background-color:  hsl(219, 85%, 26%);
     color: white;
-    padding: 0 12px;
     font-size: 0.7em;
+    padding: 0px 12px;
     border-radius: 6px;
 }
 
 .header a{
-    /* alinea al hijo mismo */
-    justify-self: end; 
-    color: hsl(219, 12%, 42%);
+    justify-self: end;
+    color: hsl(219, 14%, 63%);
 }
 
 .header a:hover{
@@ -57,59 +53,72 @@ h1{
     grid-area: main;
     display: grid;
     align-content: flex-start;
-    row-gap: 10px;
+    gap: 10px;
     
 }
+
 .main .card{
-    border-radius: 10px;
-    background-color:hsl(205, 33%, 90%);
+    height: auto;
     padding: 10px;
     display: grid;
     grid-template-areas: 
     "avatar content"
     ". time";
-    grid-template-columns: 20% 80%;
-    column-gap: 10px;
+   
+    gap: 10px;
 }
 
 .main .card .avatar{
     grid-area: avatar;
-  
 }
-.main .card .avatar img{
-    width: 60px;
-   
-    
+
+main .card .avatar img{
+    display: block;
+    width: 80%;
+    margin: 0 auto;
 }
+
 .main .card .content{
-    grid-area: 'content';
-  
+    grid-area: content;
 }
+
+.main .card .content .text{
+    color:hsl(219, 14%, 63%)
+}
+
 .main .card .time{
-    
     grid-area: time;
-  
+    color: hsl(219, 14%, 63%);
 }
-.main .card .cont{
-    display: flex;
-    width: 250%;
-    border-radius: 8px;
-    margin-top: 30px;
-    border: 1px solid black;
-   justify-content: center;
+
+.unread {
+    background-color: hsl(210, 60%, 98%);
+    border-radius: 10px;
 }
+.unread .text::after {
+    content: ' •';
+    color: hsl(1, 90%, 64%);
+}
+
+
+
+
+
 
 @media (min-width: 600px){
+
     .grid-container{
+        height: 1000px;
         margin: 40px auto;
         border-radius: 20px;
-        border-radius: 30px;
+        padding: 30px;
     }
-    h1{
-        font-size: 2em;
+    .main{
+        gap: 20px;
     }
-    main{
-        gap: 30px;
+
+    .main .card{
+        padding: 20px;
+        gap: 20px;
     }
 }
-
