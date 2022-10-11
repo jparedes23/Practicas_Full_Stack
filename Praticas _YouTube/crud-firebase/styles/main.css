@@ -1,0 +1,61 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Slab:wght@300;400;500;600;700;800;900&display=swap');
+
+*{
+    --dark: #001233;
+    --white: #ffffff;
+    --yellow: #ffb703;
+}
+
+/* HEader */
+body{
+    font-family: 'Confortaa', cursive ;
+}
+
+.navbar{
+ background-color:  var(--dark);
+
+}
+
+.navbar-item{
+color:  var(--white);
+font-weight: bold;
+font-size: 36px;
+transition: .3s ease-in-out ;
+height: 8vh;
+}
+.navbar-item:hover{
+color: var(--yellow) !important;
+}
+
+/* Main */
+
+.main-content{
+    height: 92vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.crud-container{
+    width: 60%;
+    padding: 2rem 3rem;
+    overflow: auto;
+    box-shadow: 0 0 1rem 0 rgb(0, 0, 0, 0.4);
+    border-radius: 0.5rem;
+}
+
+.crud-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem 1rem 2rem;
+    border-bottom: 1px solid;
+}
+
+.crud-container h1 {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.button span{
+    margin-left: 10px;
+}

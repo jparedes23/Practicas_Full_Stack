@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript CRUD</title>
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <header>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/"> Javascript CRUD</a>
+            </div>
+          </nav>
+    </header>
+    <main class="main-content">
+        <div class="crud-container">
+            <div class="crud-header">
+                <h1>Estudiantes Registrados</h1>
+                <button class="button is-success" id="openregisterModal">
+                    <i class="fas fa-plus"></i>
+                    <span>Nuevo Estudiante</span>
+                </button>
+            </div>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Telefono</th>
+                    <th>Correo</th>
+                    <th>Opciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Julio Pabel</td>
+                    <td>Paredes</td>
+                    <td>Flores</td>
+                    <td>942713591</td>
+                    <td>pabel_89@hotmail.com</td>
+                    <td>  
+                        <button class="button is-warning">
+                                <i class="fas fa-pencil-alt"></i>
+                        </button>
+                        <button class="button is-danger">
+                                <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                    
+                  </tr>
+                  
+                </tbody>
+              </table>
+        </div>
+    </main>
+    <div class="modal" id="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Registar Nuevo Estudiante</p>
+            <button class="delete" aria-label="close" id="closeRegisterModal"></button>
+          </header>
+          <section class="modal-card-body">
+           <form id="register-form">
+            <div class="field">
+                <label class="label">Nombre</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="Ingresa tu Nombre" name="nombre">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Apellido Paterno</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="Ingresa tu Apellido Paterno" name="apePa">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Apellido Materno</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="Ingresa tu Apellido Materno" name="apeMat">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Telefono</label>
+                <div class="control has-icons-left has-icons-right">
+                  <input class="input " type="tel" placeholder="+524555 444" name="phone">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-phone"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Correo Electronico</label>
+                <div class="control has-icons-left has-icons-right">
+                  <input class="input " type="email" placeholder="someone " name="email">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-envelope"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Descripcion</label>
+                <div class="control">
+                  <textarea class="textarea" placeholder="Textarea" name="desc"></textarea>
+                </div>
+              </div>
+
+          </section>
+          <footer class="modal-card-foot">
+            <button type="submit" class="button is-success">
+                <i class="fas fa-save"></i> 
+                <span>Registrar</span>
+            </button>
+        </form> 
+        
+          </footer>
+        </div>
+      </div>
+</body>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+        apiKey: "AIzaSyAt98D1A0EbvetVA1yj-xvjKhJTvLHvVJI",
+        authDomain: "crud-d0d3f.firebaseapp.com",
+        projectId: "crud-d0d3f",
+        storageBucket: "crud-d0d3f.appspot.com",
+        messagingSenderId: "996648161333",
+        appId: "1:996648161333:web:f040813de5e864bdf7a17c"
+      };
+   // Initialize Firebase
+   const app = initializeApp(firebaseConfig);
+</script>
+<script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js"></script>
+<script src="./js/app.js"></script>
+</html>
