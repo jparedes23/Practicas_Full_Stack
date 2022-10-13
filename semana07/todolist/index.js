@@ -1,4 +1,4 @@
-import { Task } from "./task.js";
+
 
 const inputTask = document.querySelector(".input__task");
 const btnCreate = document.querySelector(".btn__create");
@@ -19,7 +19,7 @@ if (taskText === "") {
     return;
 }
 
-const task = new Task(taskText, new Date(), 1)
+const task = new Task(arraytask.length +1, taskText, new Date(), 1)
 arraytask.push(task);
 // console.log(arraytask);
 //task. biene de la instancia 
@@ -27,4 +27,12 @@ arraytask.push(task);
 listTask.innerHTML += task.render();
 
 inputTask.value = ""; // para limpiar el input 
+}
+
+function destroy(id){
+    // como eliminamos un elemento de un array
+    //en la condicion podemos decir que traiga todos los elemento que tenga 
+    //el id que estamos reciviendo
+
+    
 }

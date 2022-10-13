@@ -16,20 +16,25 @@
 //!!! Imporante un Clase siempre inicia en Mayuscula
 //Para poder usar import de este archivo tenemos que decir 
 ///que nuestra clase sea exportable, es decir que pueda ser usada desde otro archivo
-export class Task {
-    constructor(name, date, status){
+ class Task {
+    constructor(id,name, date, status){
+        this._id=id;
         this._name=name;
         this._date=date;
         this._status=status;
     }
+
+
+
+
 /// En un clase no hace falta usar la palabra function
 /// esta es una funcion
     render(){
-        return `<div class="item_task">
+        return `<div id="${this._id}" class="item_task">
         <input type="checkbox">
         <h6>${this._name}</h6>
         <button><img src="./img/edit.png" width="20" alt=""></button>
-        <button><img src="./img/delete.png" width="20" alt=""></button>
+        <button onclick = "destroy(${this._id})"><img src="./img/delete.png" width="20" alt=""></button>
     </div>`
     }
 }
