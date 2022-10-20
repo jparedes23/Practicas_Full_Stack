@@ -10,7 +10,7 @@ const arraytask =[];
 
 // !!Nota cuando una funcion no tiene nombre se llama Funcion Anonima
 btnCreate.onclick = function(){
-    const taskText = inputTask.value;
+    const taskText = inputTask.value; //capturamos los valores
     // console.log("taskText", taskText)
 
 //vamos a validar que el tasktext no estea vacio
