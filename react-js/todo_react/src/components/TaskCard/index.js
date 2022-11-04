@@ -1,7 +1,8 @@
 import Swal from "sweetalert2";
+import { destroy} from "../../services"
 
 function TaskCard(props) {
-	const { task, updateTask } = props;
+	const { task, updateTask, getTasks } = props;
   
 	const statusClass = {
 	  1: "",
@@ -9,12 +10,33 @@ function TaskCard(props) {
 	  3: "bg-danger",
 	};
 
-	 async function confirmUpdate() {
-		Swal.fire({
-			title:"",
-			text: ""
+	async function createAlert (text){
+		const res = await Swal.fire({
+			title: "Importante",
+			text,
+			showCancelButton: true,
+			showConfirmButton: true,
 		})
+		return res.isConfirmed;
 	}
+
+	 async function confirmUpdate() {
+		const isConfirmed= await createAlert("Esta segurro que desea Actualizar")
+
+		if (isConfirmed) {
+			await updateTask(task.id)
+		}
+	}
+
+	async function confirmDelete() {
+		const isConfirmed= await createAlert("Esta segurro que desea Eliminar")
+
+		if (isConfirmed) {
+			await destroy(task.id);
+			await getTasks();
+		}
+	}
+
 
   
 	return (
@@ -41,10 +63,14 @@ function TaskCard(props) {
 		  <div className="d-flex justify-content-between">
 			<span className="text-muted small">{String(task.createdAt)}</span>
 			<span>
-			  <button className="btn btn-sm btn-outline-secondary py-0 small opacity-50">
+			  <button
+			 onClick={confirmUpdate} 
+			  className="btn btn-sm btn-outline-secondary py-0 small opacity-50">
 				✎
 			  </button>
-			  <button className="btn btn-sm btn-outline-danger py-0 small opacity-50 deleteButton">
+			  <button 
+			 onClick={confirmDelete}  
+			  className="btn btn-sm btn-outline-danger py-0 small opacity-50 deleteButton">
 				×
 			  </button>
 			</span>

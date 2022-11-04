@@ -46,3 +46,32 @@ export const update = async (id, body) => {
         console.log(error)
     }
 }
+
+// export const getProfile = async () => {
+//     try {
+//         const response = fetch ("https://api.github.com/users/jparedes23")
+//         const data = await response.json();
+//     } catch (error) {
+        
+//     }
+// }
+
+
+/// para eliminar un registro
+
+export const destroy = async (id)=>{
+    try {
+        const response = await fetch (`${url}/${id}`,{
+            method: "DELETE",
+            headers: {
+                "Content-type": "application/json",
+            },
+        })
+
+        const data  = await response.json();
+        return data;
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
