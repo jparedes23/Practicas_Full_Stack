@@ -1,121 +1,135 @@
+import { useState, useEffect, useContext} from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { getProfile } from "../../services";
 
-import "../../App.css";
-import { useState } from "react";
-import Swal from "sweetalert2";
-const Profile = ()=> {
+const Profile = () => {
 
-  const [inputText, setInputText] = useState("");
+  const {user: userContext}= useContext(AuthContext)
+
+
+
   const [user, setUser] = useState(null);
-  
 
-  function handleInputChange(event) {
-    setInputText(event.target.value);
-  }
-
-  async function searchUser() {
-
-    try {
-      const response = await fetch(`https://api.github.com/users/${inputText}`);
-      const data = await response.json();
-
-      if (data.message === "Not Found") {
-        Swal.fire("Error", "El usuario que buscas no existe", "error");
-        return;
-      }
-      setUser(data);
-      setInputText("");
-    } catch (error) {
-      console.log("Error", error);
-    }
-  }
-    return (
-        <div className="container">
-     
-      <div className="section-1">
-        <h4 className="title">devfinder</h4>
-        <button 
-       
-        className="btn-mode">
-          LIGHT <img width="20" src="./images/sun.png" alt="" />
-        </button>
-      </div>
+  const fetchUser = async () => {
+    const response = await getProfile();
     
-      <div className="search-container">
-        <div className="input-container">
-          <img width="15" src="./images/search.png" alt="" />
-          <input
-             value={inputText}
-              onChange={handleInputChange}
-              className="input-search"
-            type="text"
-            placeholder="Search GitHub username..."
-          />
-        </div>
-        <div>
-          <button  onClick={searchUser} className="btn-search">Search</button>
-        </div>
-      </div>
-     
-      <div className="information-container">
-       
-        <div className="image-container">
-          <img width="100" src={user?.avatar_url} alt="" />
-        </div>
-       
-        <div className="description-container">
-        
-          <div className="user-date-container">
-            <h2>{user?.name}</h2>
-            <p>{user?.created_at}</p>
-          </div>
-          
-          <div className="user-bio-container">
-          <p>@{user?.login}</p>
-          <p>{user?.bio}</p>
-          </div>
-        
-          <div className="card-information">
-          <div>
-            <h5>Repos</h5>
-            <h2>{user?.public_repos}</h2>
-          </div>
-          <div>
-            <h5>Followers</h5>
-            <h2>{user?.followers}</h2>
-          </div>
-          <div>
-            <h5>Following</h5>
-            <h2>{user?.following}</h2>
-          </div>
-          </div>
-         
-          <div className="info-container">
-          <div>
-            <p>
-              <img width="15"  alt="" />
-              &nbsp;{user?.location}
-            </p>
-            <p>
-              <img width="15"  alt="" />
-              &nbsp;{user?.blog}
-            </p>
-          </div>
-          <div>
-            <p>
-              <img width="15"  alt="" />
-              &nbsp;{user?.twitter_username}
-            </p>
+    setUser({
+      ...response,
+      ...userContext,
+    });
+  };
 
-            <p>
-              <img width="15"  alt="" />
-              &nbsp;{user?.company}
-            </p>
-            </div>
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+  return (
+    <div
+      className="container"
+      style={{
+        maxWidth: "500px",
+      }}
+    >
+      <div className="d-flex justify-content-center mt-3">
+        <div className="row">
+          <div className="col-12">
+            <h6 className="text-gray">Edit profile</h6>
+          </div>
+          <div className="col-12 mt-3">
+            {user && (
+              <div className="row d-flex">
+                <div className="col-12 mb-5 text-center">
+                  <img
+                    src={user.avatar_url}
+                    className="rounded-circle"
+                    width={100}
+                    alt=""
+                  />
+                </div>
+                <div className="col-6">
+                  <label htmlFor="">First Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={user.name}
+                  />
+                </div>
+                <div className="col-6">
+                  <label htmlFor="">Username</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={user.login}
+                  />
+                </div>
+                <div className="col-12 mt-3">
+                  <label htmlFor="">Email</label>
+                  <input
+                    type="text"
+                    value={user.email}
+                    className="form-control"
+                  />
+                </div>
+                <div className="col-12 mt-3">
+                  <label htmlFor="">Bio</label>
+                  <input
+                    type="text"
+                    value={user.bio}
+                    className="form-control"
+                  />
+                </div>
+                <div className="col-12 mt-3">
+                  <label htmlFor="">Blog</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={user.blog}
+                  />
+                </div>
+                <div className="col-6 mt-3">
+                  <label htmlFor="">City</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={user.location}
+                  />
+                </div>
+                <div className="col-6 mt-3">
+                  <label htmlFor="">Company</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={user.company}
+                  />
+                </div>
+                <div className="col-6 mt-3">
+                  <label htmlFor="">Country</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={user?.location?.split(" ")[1]}
+    
+                  />
+                </div>
+                <div className="col-12 mt-3">
+                  <label htmlFor="">Password</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    value={user.password}
+                  />
+                </div>
+                <div className="col-12 mt-3 d-flex gap-2">
+                  <button className="btn btn-primary">Save</button>
+                  <button className="btn btn-danger">Cerrar session</button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
     </div>
-    )
-}
+  );
+};
 
 export default Profile;

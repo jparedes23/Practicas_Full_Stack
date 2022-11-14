@@ -1,5 +1,19 @@
 const url = "https://6363105e66f75177ea3c934e.mockapi.io/tareas"
 
+
+export const getProfile = async () => {
+    try {
+      const response = await fetch("https://api.github.com/users/jparedes23");
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+
+
+
+
 // methodo para listar
 
 export const get = async () => {
@@ -11,6 +25,26 @@ export const get = async () => {
         console.log(error)
     }
 }
+
+////Methodo para obtener por id del mockapi
+
+export const getById = async (id)=> {
+    try {
+        const response = await fetch (url + "/"+id)
+        console.log(response)
+        if (response.ok) {
+            const data = await response.json();
+            return data
+        }else{
+            return null
+        }
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}
+
+
 
 /// metodo para crear
 export const post = async (body) => {
