@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { getUsers } from "../services";
 
 export const AuthContext = createContext();
 
@@ -10,29 +11,31 @@ export const AuthProvider = (props) => {
   const { children } = props;
 
   const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user")) ?? {}  /// convertimos a un objeto y no que sea vacio
+    JSON.parse(localStorage.getItem("user")) ?? {}
   );
 
-  function login(email, password) {
-    // aca vamos a comparar con un usuario fake
-    //si email es diferente a "linder@gmail.com" o password  es diretente a "123456" entonces retorna false
-    if (email !== "pabel_89@hotmail.com" || password !== "123456") return false; 
+  async function login(email, password) {
+    // Traemos a TODOS los usuarios de mockapi:
+    const usersDB = await getUsers();
+    // Buscamos dentro de usersDB, el usuario con el email y password:
 
-    const user = { email, password };
+    const user = usersDB.find(
+      (userDb) => userDb.email === email && userDb.pass === password
+    );
+
+    if (!user) return false;
+
     localStorage.setItem("user", JSON.stringify(user));
     setUser(user);
-    return true
+    return true;
   }
 
   function logout() {
     localStorage.clear();
     setUser({});
-    window.location.href = "/login";
   }
 
   // funcion para validar si la session existe
-  //si esta vacio es falso
-  //si esta lleno es true
   function isAuth() {
     return Object.entries(user).length !== 0;
   }

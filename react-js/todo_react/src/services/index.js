@@ -1,4 +1,19 @@
-const url = "https://6363105e66f75177ea3c934e.mockapi.io/tareas"
+     const url = "https://6363105e66f75177ea3c934e.mockapi.io/tareas"
+const urlUsers = "https://6363105e66f75177ea3c934e.mockapi.io/user";
+const urlBooks="https://www.googleapis.com/books/v1/volumes?q="
+
+
+export const getBooks = async (search) => {
+    try {
+      const response = await fetch(`${urlBooks}${search}&maxResults=20`);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+
 
 
 export const getProfile = async () => {
@@ -62,6 +77,36 @@ export const post = async (body) => {
         console.log(error)
     }
 }
+
+
+export const postUser = async (user) => {
+	try {
+		const response = await fetch(urlUsers, {
+			method: "POST",
+			headers: {
+				"Content-type": "application/json",
+			},
+			body: JSON.stringify(user),
+		});
+		const data = await response.json();
+		return data;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const getUsers = async () => {
+	try {
+		const response = await fetch(urlUsers);
+		const data = await response.json();
+		return data;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+
+
 
 //para Actualizar 
 
